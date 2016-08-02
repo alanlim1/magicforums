@@ -27,8 +27,10 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass'
+gem "font-awesome-rails"
+
 group :production do
-gem 'rails_12factor'
+	gem 'rails_12factor'
 end
 
 # Use Capistrano for deployment

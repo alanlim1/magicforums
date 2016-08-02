@@ -1,0 +1,90 @@
+    .background {
+        background-image: asset-url("download.jpg");
+        height: calc(100vh - 52px);
+        width: 100%;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .bg2 {
+        background-image: asset-url("download.jpg");
+        height: 50vh;
+        width: 100%;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 50px auto;
+      justify-content: center;
+    }
+
+    .feature {
+    flex: 0 0 280px;
+    margin: 20px 10px;
+    }
+
+
+    .icon-settings {
+        margin: 100px 0;
+    }
+
+    @media all and (max-width: 1199px) {
+        .features {
+            max-width: 600px;
+        } 
+    }
+
+    .imagebox {
+        max-width: 1200;
+        margin: 20px 20px;
+        display: flex;
+        flex: 0 0 280px;
+        justify-content: space-around;
+        position: relative;
+    }
+
+    .imagebox:hover .invisible-layout {
+        opacity: 0.5;
+        transition: all 0.3 ease-in-out;
+    }
+
+    .img-settings {
+        width: 100%;
+    }
+
+    .invisible-layout {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        display: flex;
+        justify-content: center;
+        background-color: yellow;
+    }
+
+    .primary {
+        width: 50px;
+        border-bottom: 2px solid orange;
+    }
+    
+    .h1 {
+        align-items: center;
+        justify-content: center;
+    }   
+
+    .h1 {
+        font-style: italic;
+    }

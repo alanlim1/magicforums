@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Magicforums</title>
     <%= csrf_meta_tags %>
 
@@ -9,6 +10,9 @@
   </head>
 
   <body>
+    <div id="header">
+    <%= render partial: 'partials/header' %>
+    </div>
     <%= yield %>
   </body>
 </html>
