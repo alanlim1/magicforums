@@ -1,0 +1,20 @@
+<div class="topics">
+
+	<div class="topix text-center">
+		<div class="content">
+			<h1> Welcome.</h1>
+		</div>
+	</div>
+</div>	
+
+<div class="features text-center">
+	<% @topics.each do |topic| %>
+	  <div class="feature">
+	    <h3><%= topic.title %></h3>
+	    <h5><%= topic.description %></h5>
+	    <%= link_to topic.title, topic_path(topic) %>
+	    <br>
+	    <br>
+	  </div>
+	<% end %>
+</div>	
