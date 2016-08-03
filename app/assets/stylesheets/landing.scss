@@ -1,4 +1,6 @@
-    .background {
+.landing { 
+    
+    .background {   
         background-image: asset-url("download.jpg");
         height: calc(100vh - 52px);
         width: 100%;
@@ -83,8 +85,7 @@
     .h1 {
         align-items: center;
         justify-content: center;
-    }   
-
-    .h1 {
         font-style: italic;
     }
+}    
+
