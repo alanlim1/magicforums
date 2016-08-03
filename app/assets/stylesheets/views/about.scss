@@ -1,20 +1,8 @@
-.aboutscss { 
-    
-    .background {   
+.about { 
+
+    .aboutpic {
         background-image: asset-url("download.jpg");
         height: calc(100vh - 52px);
-        width: 100%;
-        background-position: 50% 50%;
-        background-repeat: no-repeat;
-        background-size: cover;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .bg2 {
-        background-image: asset-url("download.jpg");
-        height: 50vh;
         width: 100%;
         background-position: 50% 50%;
         background-repeat: no-repeat;

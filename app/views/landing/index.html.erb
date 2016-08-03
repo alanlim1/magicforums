@@ -1,14 +1,14 @@
 <div class="landing">
 
-	<div class="background">
+	<div class="background text-center">
 		<div class="content">
-			<h1> Hello World </h1>
+			<h1> Welcome.</h1>
 		</div>
 	</div>
 
-	<div class="bg2">
+	<div class="bg2 text-center">
 		<div class="content">
-			<h1> Goodbye Universe </h1>
+			<h1><i>PERSPEKT: Sep 2016.</i> </h1>
 		</div>
 	</div>
 
@@ -28,42 +28,63 @@
 		  </div>
 		  <div class="feature text-center">
 		  	<%= fa_icon 'bed 5x' %>
-		  	<h5> Rest well with all your problems solved. </h5>
+		  	<h5> No more problems. No more worries. </h5>
 		  </div>
 	</section>
 
+	<div class="text-center">
 		<div class="imagebox">
 			<div class="invisible-layout">
-					<h3>I'm a mountain mover!</h3>
-				</div>	
-					<%= image_tag "swim.jpg", class:"img-settings" %>
-			</div>			
-		<div class="imagebox">
-			<div class="invisible-layout">
-					<h3>I'm a mountain climber!</h3>
-				</div>	
-					<%= image_tag "swim.jpg", class:"img-settings" %>
+				<h3>I am a storybook with untold stories.</h3>
 			</div>	
+				<%= image_tag "https://hd.unsplash.com/photo-1470169048093-08ac89858749", class:"img-settings" %>
+		</div>			
 		<div class="imagebox">
 			<div class="invisible-layout">
-					<h3>I'm a mountain!</h3>
-				</div>	
-					<%= image_tag "swim.jpg", class:"img-settings" %>
-			</div>		
+				<h3>I transform lives meshing new metals with new metas.</h3>
+			</div>	
+				<%= image_tag "https://hd.unsplash.com/photo-1470133294210-94114cf67cc6", class:"img-settings" %>
+		</div>	
+		<div class="imagebox">
+			<div class="invisible-layout">
+				<h3>I am a mountain. Yes, a <i>mountain</i>.</h3>
+			</div>	
+				<%= image_tag "https://hd.unsplash.com/photo-1470138831303-3e77dd49163e", class:"img-settings" %>
+		</div>		
+		<div class="imagebox">
+			<div class="invisible-layout">
+				<h3> I am both the eyes on the ice and the ice on the eyes.</h3>
+			</div>	
+				<%= image_tag "https://hd.unsplash.com/photo-1470181446350-2d7024be15be", class:"img-settings" %>
+		</div>	
+	</div>		
+
 
 	<section class="contacts">
 		<div class="h1 text-center"><i>Join Us.</i></div>
 			<hr class="primary">
 			<div class="h2 text-center">Burning questions are what killed the cat. <br>Your curiosity can only be quenched through an unexhaustible thirst of knowledge not yet known.</div>
+
+			<div class="features">
+			<div class="features text-center">	
+				<%= link_to "https://www.facebook.com/makingheadsortails" do %>
+				<%= fa_icon "facebook-square 5x" %>
+				<div>Join us here.</div>
+			<% end %>
+
+			</div>
 				<div class="features">
 					<div class="feature text-center">
 						<%= fa_icon "phone 3x" %>
 						<h5>1800 88 1337</h5>
 					</div>
 					<div class="feature text-center">
+						<%= link_to "open:questions@answered.com" do %>
 						<%= fa_icon "envelope-o 3x" %>
-						<h5>questions@answered.com</h5>
+						<div>questions@answered.com</div>
+					<% end %>	
 					</div>	
+
 					<div class="feature text-center">
 						<%= fa_icon "bicycle 3x" %>
 						<h5>Solutions Inc, 1 Infinity Loop, Silicon Valley, USA</h5>
