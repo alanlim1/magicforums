@@ -24,7 +24,7 @@
     }
 
 
-    .features {
+    .featurestopics {
       display: flex;
       flex-wrap: wrap;
       max-width: 1200px;
@@ -32,7 +32,7 @@
       justify-content: center;
     }
 
-    .feature {
+    .featuretopics {
     flex: 0 0 280px;
     margin: 20px 10px;
     border-style: solid;
@@ -45,7 +45,7 @@
     }
 
     @media all and (max-width: 1199px) {
-        .features {
+        .featurestopic {
             max-width: 600px;
         } 
     }
