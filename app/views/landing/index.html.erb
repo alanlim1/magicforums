@@ -67,7 +67,7 @@
 
 			<div class="features">
 			<div class="features text-center">	
-				<%= link_to "https://www.facebook.com/makingheadsortails" do %>
+				<%= link_to "https://www.facebook.com/makingheadsortails", :target => "_blank" do %>
 				<%= fa_icon "facebook-square 5x" %>
 				<div>Join us here.</div>
 			<% end %>
@@ -79,7 +79,7 @@
 						<h5>1800 88 1337</h5>
 					</div>
 					<div class="feature text-center">
-						<%= link_to "open:questions@answered.com" do %>
+						<%= mail_to "open:questions@answered.com" do %>
 						<%= fa_icon "envelope-o 3x" %>
 						<div>questions@answered.com</div>
 					<% end %>	
