@@ -8,19 +8,24 @@
 </div>	
 <br>
 <br>
+<br>
+
 <div class="wrapper">
-	<button type="button">Create</button>
-</div>	
+	<%= link_to new_post_path, :target => "" do %>
+	<button type="button">Make a new post.</button>
+	<% end %>
+</div>
 
 <div class="featurestopics text-center img-settings">
 	<% @posts.each do |post| %>
 	    <div class="featuretopics">
 	    <br>
-	  	  <button type="button">Edit</button>
+	    	<%= link_to edit_post_path(post) do %>	
+	  		<button type="button">Edit Post</button>
+	  		<% end %>
 	  	    <h2><%= link_to post.title, post_path(post) %></h2>
     		<h3><% post.title %></h3>
     		<h4><%= post.body %></h5>
-
 	    <br>
 	    <br>
 	    <br>

@@ -1,16 +1,16 @@
 <div class="topics">
   <%= form_for(@post, url: post_path(@post), html: { id: "post-update-form" }) do |f| %>
     <h1 class="text-center">
-      Create Topic
+      Edit your post and content.
     </h1>
 
     <div class="form-group">
-      <h4> <%= f.label :title_field, "Post Title" %> </h4>
+      <h4> <%= f.label :title_field, "Title" %> </h4>
       <%= f.text_field :title, required: true, id: "post_title_field", class: 'form-control' %>
     </div>
 
     <div class="form-group">
-      <h4> <%= f.label :text_field, "Post Description" %> </h4>
+      <h4> <%= f.label :text_field, "Description" %> </h4>
       <%= f.text_field :body, id: "post_body_field", class: 'form-control' %>
     </div>
 

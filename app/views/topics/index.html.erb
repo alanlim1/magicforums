@@ -8,20 +8,24 @@
 </div>	
 <br>
 <br>
-<h1 class="wrapper">
-	<button type="button">Create</button>
-</h1>	
+
+<div class="wrapper">
+	<%= link_to new_topic_path, :target => "" do %>
+	<button type="button">Make a new topic.</button>
+	<br>
+	<% end %>
+</div>
 
 <div class="featurestopics text-center img-settings">
 	<% @topics.each do |topic| %>
 	    <div class="featuretopics">
 	    <br>
-	  	  <button type="button">Edit</button>
-	    	<h3><%= topic.title %>
-	    	</h3>
-	    	<h5><%= topic.description %>
-	    	</h5>
-	    	<%= link_to topic.title, topic_path(topic) %>
+	    	<%= link_to edit_topic_path(topic) do %>	
+	  	  	<button type="button">Edit Topic</button>
+	  	  	<% end %>
+	  	  	<h2><%= link_to topic.title, topic_path(topic) %></h2>
+	  	  	<h3><% topic.title %></h3>
+	    	<h4><%=topic.description %></h4>
 	    <br>
 	    <br>
 	    <br>

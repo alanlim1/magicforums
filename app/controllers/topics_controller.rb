@@ -4,6 +4,10 @@ class TopicsController < ApplicationController
 		@topics = Topic.all.order(created_at: :desc)
 	end
 
+	def show
+		@topic = Topic.find_by(id: params[:id])
+	end
+	
 	def new
 		@topic = Topic.new
 	end

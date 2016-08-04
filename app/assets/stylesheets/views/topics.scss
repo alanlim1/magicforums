@@ -1,6 +1,6 @@
     .topics {
         background-image: asset-url("download.jpg");
-        height: calc(100vh - 52px);
+        height: calc(70vh - 52px);
         width: 100%;
         background-position: 50% 50%;
         background-repeat: no-repeat;
@@ -8,7 +8,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        color: white;
+        color: black;
     }
 
     .bg2 {
@@ -36,7 +36,8 @@
     flex: 0 0 280px;
     margin: 20px 10px;
     border-style: solid;
-    border-color: lightblue;
+    border-color: transparent;
+    box-sizing: border-box;
     }
 
 
@@ -100,4 +101,8 @@
 
     .edit {
         color:black;
+    }
+
+    .justify {
+        text-align: justify-all;
     }

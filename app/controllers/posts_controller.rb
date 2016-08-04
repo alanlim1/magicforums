@@ -1,56 +1,57 @@
 class PostsController < ApplicationController
 
-    def index
-        @topic = Topic.includes(:posts).find_by(id: params[:topic_id])
-        @posts = @topic.posts.order("created_at DESC")
+	def index
+		@posts = Post.all.order(created_at: :desc)
+	end
+
+	def show
+		@post = Post.find_by(id: params[:id])
+	end
+	
+
+	def new
+		@post = Post.new
+	end
+
+	def create
+		@post = Post.new(post_params)
+
+    	if @post.save
+      		redirect_to posts_path
+    	else
+      		render new_post_path
+      	end	
     end
 
-    def new
-        @topic = Topic.find_by(id: params[:id])
-        @post = Post.new
-    end
+	def edit
+		@post = Post.find_by(id: params[:id])
+	end
 
-    def create
-        @topic = Topic.find_by(id: params[:topic_id])
-        @post = Post.new(post_params.merge(topic_id: params[:topic_id]))
+	def update
+		@post = Post.find_by(id: params[:id])
 
-        if @post.save
-            redirect_to topic_posts_path(@topic)
-        else
-            redirect_to new_topic_post_path(@topic)
-        end
-    end
+	    if @post.update(post_params)
+	    	redirect_to post_path(@post)
+    	else
+      		redirect_to edit_post_path(@post)
+    	end
+	end
 
-    def edit
-        @post = Post.find_by(id: params[:id])
-    end
-
-    def update
-        @topic = Topic.find_by(id: params[:topic_id])
-        @post = Post.find_by(id: params[:id])
-
-        if @post.update(post_params)
-            redirect_to post_path(@post)
-        else
-            redirect_to edit_post_path(@post)
-        end
-    end
-
-    def destroy
-        @post = Post.find_by(id: params[:id])
-
-        if @post.destroy
-            redirect_to posts_path
-        else
-            redirect_to post_path(@post)
-        end
-    end
+	def destroy
+		@post = Post.find_by(id: params[:id])
+    	
+    	if @post.destroy
+      		redirect_to posts_path
+    	else
+      		redirect_to post_path(@post)
+    	end
+	end
 
 
-    private
+	private
 
-        def post_params
-            params.require(:post).permit(:title, :body)
-        end
+		def post_params
+		    params.require(:post).permit(:title, :body)
+		end
 
-end
+end	
