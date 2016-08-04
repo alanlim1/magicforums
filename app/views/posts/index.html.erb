@@ -1,9 +1,29 @@
-<h1>Posts</h1>
+<div class="topics">
 
-<% @posts.each do |post| %>
-  <div class="post">
-    <h3><%= post.title %></h3>
-    <h5><%= post.description %></h5>
-    <%= link_to post.title, post_path(topic) %>
-  </div>
-<% end %>
+	<div class="topics text-center">
+		<div class="content">
+			<h1> Posts.</h1>
+		</div>
+	</div>
+</div>	
+<br>
+<br>
+<div class="wrapper">
+	<button type="button">Create</button>
+</div>	
+
+<div class="featurestopics text-center img-settings">
+	<% @posts.each do |post| %>
+	    <div class="featuretopics">
+	    <br>
+	  	  <button type="button">Edit</button>
+	  	    <h2><%= link_to post.title, post_path(post) %></h2>
+    		<h3><% post.title %></h3>
+    		<h4><%= post.body %></h5>
+
+	    <br>
+	    <br>
+	    <br>
+	  </div>
+	<% end %>
+</div>	

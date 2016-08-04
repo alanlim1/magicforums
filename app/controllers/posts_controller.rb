@@ -1,24 +1,23 @@
 class PostsController < ApplicationController
 
     def index
-        @posts = Post.all.order(created_at: :desc)
-    end
-
-    def show
-        @post = Post.find_by(id: params[:id])
+        @topic = Topic.includes(:posts).find_by(id: params[:topic_id])
+        @posts = @topic.posts.order("created_at DESC")
     end
 
     def new
+        @topic = Topic.find_by(id: params[:id])
         @post = Post.new
     end
 
     def create
-        @post = Post.new(post_params)
+        @topic = Topic.find_by(id: params[:topic_id])
+        @post = Post.new(post_params.merge(topic_id: params[:topic_id]))
 
         if @post.save
-            redirect_to posts_path
+            redirect_to topic_posts_path(@topic)
         else
-            render new_post_path
+            redirect_to new_topic_post_path(@topic)
         end
     end
 
@@ -27,9 +26,10 @@ class PostsController < ApplicationController
     end
 
     def update
+        @topic = Topic.find_by(id: params[:topic_id])
         @post = Post.find_by(id: params[:id])
 
-        if @post.update(topic_params)
+        if @post.update(post_params)
             redirect_to post_path(@post)
         else
             redirect_to edit_post_path(@post)
@@ -50,7 +50,7 @@ class PostsController < ApplicationController
     private
 
         def post_params
-            params.require(:post).permit(:title, :description)
+            params.require(:post).permit(:title, :body)
         end
 
 end
