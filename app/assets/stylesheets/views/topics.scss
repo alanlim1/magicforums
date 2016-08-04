@@ -29,15 +29,17 @@
       flex-wrap: wrap;
       max-width: 1200px;
       margin: 50px auto;
+      text-align: center ;
       justify-content: center;
     }
 
     .featuretopics {
     flex: 0 0 280px;
     margin: 20px 10px;
-    border-style: solid;
-    border-color: transparent;
+    border-style: dotted;
+    border-color: black;
     box-sizing: border-box;
+    justify-content: center;
     }
 
 

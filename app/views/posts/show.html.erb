@@ -1,9 +1,15 @@
 <div class="topics text-center">
 	<div class="featurestopics">
 		<div class="featuretopics">
-			<%= @post.title %>
-			<%= @post.body %>
-			<%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" } %>
+			<h1>
+				<%= @post.title %>
+			</h1>
+			<h4>
+				<%= @post.body %>
+			</h4>
+			<h3>
+				<%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" } %>
+			</h3>
 		</div>
 	</div>	
 </div>
