@@ -1,0 +1,23 @@
+<div class="topics"
+  <h1 class="text-center">
+  </h1>
+
+  <div class="featurestopics text-center">
+    <div class="featuretopics">
+      <div class="form-group">
+        <%= form_for(@post, url: posts_path, html: { id: "post-create-form" }) do |f| %>
+        <h4> <%= f.label :title_field, "Title Post." %> </h4>
+        <%= f.text_field :title, required: true, id: "post_title_field", class: 'form-control' %>
+      </div>
+          <h4>
+            <%= f.label :text_field, "Postdescript." %> 
+          </h4>      
+            <%= f.text_field :description, id: "post_description_field", class: 'form-control' %>
+      </div>  
+
+      <div class="form-group text-center">
+        <%= f.submit "Create Post", class: "btn btn-success btn-lg" %>
+      </div>
+   </div> 
+<% end %>
+</div>

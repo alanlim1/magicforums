@@ -1,8 +1,9 @@
 <div class="topics text-center">
 	<div class="featurestopics">
 		<div class="featuretopics">
-			<h1><%= @topic.title %></h1>
-			<h3><p><%= @topic.description %></p></h3>
+			<%= @topic.title %>
+			<%= @topic.description %>
+			<%= link_to "Delete", topic_path(@topic), method: :delete, data: { confirm: "Are you sure?" } %>
 		</div>
 	</div>	
 </div>

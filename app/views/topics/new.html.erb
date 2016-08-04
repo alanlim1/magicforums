@@ -1,4 +1,3 @@
-<%= form_for(@topic, url: topics_path, html: { id: "topic-create-form" }) do |f| %>
 <div class="topics"
   <h1 class="text-center">
   </h1>
@@ -6,15 +5,15 @@
   <div class="featurestopics text-center">
     <div class="featuretopics">
       <div class="form-group">
+      <%= form_for(@topic, url: topics_path, html: { id: "topic-create-form" }) do |f| %>
         <h4> <%= f.label :title_field, "Your question below." %> </h4>
         <%= f.text_field :title, required: true, id: "topic_title_field", class: 'form-control' %>
       </div>
-
-      <div class="form-group">
-        <h4> <%= f.label :text_field, "Describe." %> </h4>
-        <%= f.text_field :description, id: "topic_description_field", class: 'form-control' %>
-      </div>
-    </div>  
+          <h4>
+            <%= f.label :text_field, "Unleash your eloquence." %> 
+          </h4>      
+            <%= f.text_field :description, id: "topic_description_field", class: 'form-control' %>
+      </div>  
 
       <div class="form-group text-center">
         <%= f.submit "Create Topic", class: "btn btn-success btn-lg" %>

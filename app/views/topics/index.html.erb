@@ -6,13 +6,23 @@
 		</div>
 	</div>
 </div>	
+<br>
+<br>
+<h1 class="wrapper">
+	<button type="button">Create</button>
+</h1>	
 
 <div class="featurestopics text-center img-settings">
 	<% @topics.each do |topic| %>
-	  <div class="featuretopics">
-	    <h3><%= topic.title %></h3>
-	    <h5><%= topic.description %></h5>
-	    <%= link_to topic.title, topic_path(topic) %>
+	    <div class="featuretopics">
+	    <br>
+	  	  <button type="button">Edit</button>
+	    	<h3><%= topic.title %>
+	    	</h3>
+	    	<h5><%= topic.description %>
+	    	</h5>
+	    	<%= link_to topic.title, topic_path(topic) %>
+	    <br>
 	    <br>
 	    <br>
 	  </div>
