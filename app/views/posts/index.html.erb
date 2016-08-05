@@ -23,7 +23,9 @@
 	    	<%= link_to edit_topic_post_path(@topic, post) do %>	
 	  		<button type="button">Edit Post</button>
 	  		<% end %>
-	  	    <h2><%= link_to post.title, post_path(post) %></h2>
+	  	    <h2><%= link_to post.title, topic_posts_path(@topic) %></h2> 
+	  	   <!--  #@topic -->
+	  	    
     		<h3><% post.title %></h3>
     		<h4><%= post.body %></h5>
 	    <br>

@@ -3,6 +3,7 @@ class PostsController < ApplicationController
     def index
         @topic = Topic.includes(:posts).find_by(id: params[:topic_id])
         @posts = @topic.posts.order("created_at DESC")
+        @post = Post.new
     end
 
     def new
@@ -33,7 +34,7 @@ class PostsController < ApplicationController
         if @post.update(post_params)      
             redirect_to topic_posts_path(@topic)
         else
-            redirect_to edit_topic_post_path(@topic, @post)
+            redirect_to edit_topic_post_path(@topic)
         end
     end
 
