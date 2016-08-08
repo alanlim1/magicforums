@@ -1,0 +1,16 @@
+<div class="topics">
+  <%= form_for(@comment, url: post_comment_path(@post, @comment), html: { id: "comment-update-form" }) do |f| %>
+    <h1 class="text-center">
+      Edit your comment.
+    </h1>
+
+    <div class="form-group">
+      <h4> <%= f.label :text_field, "Comments" %> </h4>
+      <%= f.text_field :body, id: "comment_body_field", class: 'form-control' %>
+    </div>
+
+    <div class="form-group text-center">
+      <%= f.submit "Update Comment", class: "btn btn-success btn-lg" %>
+    </div>
+  <% end %>
+</div> 
