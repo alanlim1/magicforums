@@ -1,13 +1,11 @@
-<div class="topics"
-  <h1 class="text-center">
-  </h1>
-
+<div class="topics">
   <div class="featurestopics text-center">
     <div class="featuretopics">
       <div class="form-group edit">
         <%= form_for(@topic, url: topics_path, html: { id: "topic-create-form" }) do |f| %>
-        <h4> <%= f.label :title_field, "Your question below." %> </h4>
-        <%= f.text_field :title, required: true, id: "topic_title_field", class: 'form-control' %>
+          <h4><%= f.label :title_field, "Your question below." %> 
+          </h4>
+              <%= f.text_field :title, required: true, id: "topic_title_field", class: 'form-control' %>
           <h4>
             <%= f.label :text_field, "Unleash your eloquence." %> 
           </h4>      
@@ -17,6 +15,7 @@
       <div class="form-group text-center">
         <%= f.submit "Create Topic", class: "btn btn-success btn-lg" %>
       </div>
-   </div> 
+    </div>
+  </div>
 <% end %>
 </div>
