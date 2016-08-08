@@ -11,6 +11,9 @@
 <br>
 
 <div class="wrapper">
+	<%= @topic %>
+	<br>
+	<br>
 	<%= link_to new_topic_post_path(@topic), :target => "" do %>
 	<button type="button">Make a new post.</button>
 	<% end %>
@@ -23,11 +26,12 @@
 	    	<%= link_to edit_topic_post_path(@topic, post) do %>	
 	  		<button type="button">Edit Post</button>
 	  		<% end %>
-	  	    <h2><%= link_to post.title, topic_posts_path(@topic) %></h2> 
-	  	   <!--  #@topic -->
-	  	    
+	  	    <h2><%= link_to post.title, post_comments_path(post) %></h2> 
     		<h3><% post.title %></h3>
     		<h4><%= post.body %></h5>
+    		<div>
+    			<%= link_to "Delete", topic_post_path(@topic, post), method: :delete, data: { confirm: "Are you sure?" } %>
+    		</div>
 	    <br>
 	    <br>
 	    <br>
