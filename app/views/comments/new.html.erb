@@ -6,6 +6,16 @@
     <div class="featuretopics">
       <div class="form-group edit">
         <%= form_for(@comment, url: post_comments_path, html: { id: "comment-create-form" }) do |f| %>
+
+          <div class="form-group">
+            <h4 class="text-center"> Post Image </h4>
+              <div id="preview-image">
+                <% if @comment.image? %>
+                <%= image_tag @comment.image, class: "img-settings img-responsive center-block" %>
+                <% end %>
+              </div>
+          </div>
+
             <%= f.label :text_field, "Comment description." %>  
             <%= f.text_field :body, id: "comment_body_field", class: 'form-control' %>
       </div>  

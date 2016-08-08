@@ -28,6 +28,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass'
 gem "font-awesome-rails"
+gem "carrierwave"
+gem "mini_magick"
 
 
 group :production do

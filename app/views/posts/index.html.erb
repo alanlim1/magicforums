@@ -26,6 +26,9 @@
 	    	<%= link_to edit_topic_post_path(@topic, post) do %>	
 	  		<button type="button">Edit Post</button>
 	  		<% end %>
+	  		<br>
+	  		<br>
+	  		<%= image_tag post.image.thumb %>
 	  	    <h2><%= link_to post.title, post_comments_path(post) %></h2> 
     		<h3><% post.title %></h3>
     		<h4><%= post.body %></h5>
