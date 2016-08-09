@@ -15,8 +15,8 @@ class PostsController < ApplicationController
 
     def create
         @topic = Topic.find_by(id: params[:topic_id])
-        @post = Post.new(post_params.merge(topic_id: params[:topic_id]))
-
+        # @post = Post.new(post_params.merge(topic_id: params[:topic_id]))
+        @topic = current_user.topics.build(topic_params)
         if @post.save
             flash[:success] = "You've created a new post."
             redirect_to topic_posts_path(@topic)
