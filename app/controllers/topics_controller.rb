@@ -32,8 +32,10 @@ class TopicsController < ApplicationController
 		@topic = Topic.find_by(id: params[:id])
 
 	    if @topic.update(topic_params)
+	    	flash[:success] = "You've updated your topic."
 	    	redirect_to topics_path(@topic)
     	else
+    		flash[:danger] = @topic.errors.full_messages
       		redirect_to edit_topic_path(@topic)
     	end
 	end
@@ -42,6 +44,7 @@ class TopicsController < ApplicationController
 		@topic = Topic.find_by(id: params[:id])
     	
     	if @topic.destroy
+    		flash[:danger] = "Topic deleted!"
       		redirect_to topics_path
     	else
       		redirect_to topic_path(@topic)

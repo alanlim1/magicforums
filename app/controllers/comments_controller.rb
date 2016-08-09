@@ -36,9 +36,11 @@ class CommentsController < ApplicationController
         @post = Post.find_by(id: params[:post_id])
         @comment = Comment.find_by(id: params[:id])
 
-        if @comment.update(comment_params)      
+        if @comment.update(comment_params)    
+            flash[:success] = "Comment updated!"  
             redirect_to post_comments_path(@post)
         else
+            flash[:danger] = @comment.errors.full_messages
             redirect_to edit_post_comment_path(@post)
         end
     end
@@ -48,6 +50,7 @@ class CommentsController < ApplicationController
         @post = @comment.post
 
         if @comment.destroy
+            flash[:danger] = "Comment deleted!"
             redirect_to post_comments_path(@post)
         end
     end

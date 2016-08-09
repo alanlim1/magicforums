@@ -32,8 +32,8 @@ class UsersController < ApplicationController
             flash[:success] = "You've updated your account."      
             redirect_to topics_path(@user)
         else
-            redirect_to edit_user_path(@user)
             flash[:danger] = @user.errors.full_messages
+            redirect_to edit_user_path(@user)
         end
     end
 
