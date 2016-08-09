@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+    before_action :authenticate!, only: [:create, :edit, :update, :new, :destroy]
+
 
     def index
         @post = Post.includes(:comments).find_by(id: params[:post_id])
