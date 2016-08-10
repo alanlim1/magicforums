@@ -31,6 +31,7 @@ gem "carrierwave"
 gem "mini_magick"
 gem "bcrypt"
 gem "pundit"
+gem "figaro"
 
 
 group :production do

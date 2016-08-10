@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     if user
       session[:id] = user.id
       flash[:success] = "Welcome back #{current_user.email}"
-      redirect_to root_path
+      redirect_to topics_path
     else
       flash[:danger] = "Error logging in"
       render :new
@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
   def destroy
     session.delete(:id)
     flash[:success] = "You've been logged out"
-    redirect_to root_path
+    redirect_to request.referrer || root_path
   end
 
   private

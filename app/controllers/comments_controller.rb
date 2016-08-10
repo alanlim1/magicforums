@@ -30,6 +30,7 @@ class CommentsController < ApplicationController
     def edit
         @comment = Comment.find_by(id: params[:id])
         @post = @comment.post
+        authorize @comment
     end
 
     def update
@@ -48,6 +49,7 @@ class CommentsController < ApplicationController
     def destroy
         @comment = Comment.find_by(id: params[:id])
         @post = @comment.post
+        authorize @comment
 
         if @comment.destroy
             flash[:danger] = "Comment deleted!"

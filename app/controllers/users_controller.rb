@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
         if @user.save
             flash[:success] = "You've created a new account."
-            redirect_to root_path
+            redirect_to topics_path
         else
             flash[:danger] = @user.errors.full_messages
             render :new

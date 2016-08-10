@@ -8,6 +8,7 @@ class TopicsController < ApplicationController
 	def new
 		@topic = Topic.new
 		authorize @topic
+		# authorize(current_user, @topic)
 	end
 
 	def create
