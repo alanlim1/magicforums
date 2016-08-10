@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     	resources :comments
     end
     # /posts/:post_id/comments/:id
+
+    resources :password_resets
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 end

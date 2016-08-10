@@ -21,7 +21,7 @@
               </li>
                   <% if current_user %>
               <li>
-                  <%= link_to current_user.username, edit_user_path(current_user), class: 'white shadowed link-styling' %>
+                  <%= link_to current_user.email, edit_user_path(current_user), class: 'white shadowed link-styling' %>
               </li>
               <li>
                   <%= link_to "Logout", session_path(current_user), method: :delete, class: 'white shadowed link-styling' %>

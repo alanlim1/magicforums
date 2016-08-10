@@ -4,6 +4,7 @@
   left: 0;
   right: 0;
   z-index: 2;
+}
 
   .p {
     margin: 0;
@@ -43,4 +44,12 @@
     font-size: 16px;
     text-shadow: 1px 1px 1px rgba(0,0,0,0.6);
   }
+
+.fadeOut {
+  opacity: 0;
+  transition: opacity 5s ease-in-out;
+}
+  
+.flash-messages-container {
+
 }

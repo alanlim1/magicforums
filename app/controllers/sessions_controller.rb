@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 
     if user
       session[:id] = user.id
-      flash[:success] = "Welcome back #{current_user.username}"
+      flash[:success] = "Welcome back #{current_user.email}"
       redirect_to root_path
     else
       flash[:danger] = "Error logging in"
