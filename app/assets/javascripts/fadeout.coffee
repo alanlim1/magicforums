@@ -1,11 +1,11 @@
 flashMessagesFunctions = () ->
 
 clearFlashMessages = () ->
-  setTimeout( ()->
+  setTimeout( () ->
     $('.flash-messages').addClass('fadeOut')
   , 3000)
-  setTimeout( ()->
-    $('.flash-messages-container').html("")
+  setTimeout( () ->
+    $('#flash-messages-container').html("")
   , 8000)
 
 if $('.flash-messages').length > 0

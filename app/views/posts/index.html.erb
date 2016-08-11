@@ -10,34 +10,13 @@
 <br>
 <br>
 
-<div class="wrapper">
-	<%= @topic %>
-	<br>
-	<br>
-	<%= link_to new_topic_post_path(@topic), :target => "" do %>
-	<button type="button">Make a new post.</button>
-	<% end %>
-</div>
+	<div id="posts-form-container">
+		<%= render partial: "create_post_form", locals: { post: @post, topic: @topic } %>
+	</div>
 
-<div class="featurestopics text-center img-settings">
-	<% @posts.each do |post| %>
-	    <div class="featuretopics">
-	    <br>
-	    	<%= link_to edit_topic_post_path(@topic, post) do %>	
-	  		<button type="button">Edit Post</button>
-	  		<% end %>
-	  		<br>
-	  		<br>
-	  		<%= image_tag post.image.thumb %>
-	  	    <h2><%= link_to post.title, post_comments_path(post) %></h2> 
-    		<h3><% post.title %></h3>
-    		<h4><%= post.body %></h5>
-    		<div>
-    			<%= link_to "Delete", topic_post_path(@topic, post), method: :delete, data: { confirm: "Are you sure?" } %>
-    		</div>
-	    <br>
-	    <br>
-	    <br>
-	  </div>
-	<% end %>
-</div>	
+	<div id="posts">
+		<% @posts.each do |post| %>
+		  <%= render partial: "post", locals: { post: post, topic: @topic } %>
+		<% end %>
+	</div>
+

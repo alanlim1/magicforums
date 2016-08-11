@@ -1,0 +1,33 @@
+<div class="featurestopics text-center">
+    <div class="featuretopics">
+        <div class="form-group edit">
+            <%= form_for(post, url: topic_posts_path(topic), method: :topic, authenticity_token: true, remote: true, html: { id: "post-create-form", multipart: true }) do |f| %>
+                <div class="form-group">
+                    <h4 class="text-center"> 
+                        Post Image 
+                    </h4>   
+                        <div id="preview-image">
+                            <% if post.image? %>
+                            <%= image_tag post.image, class: "img-settings img-responsive center-block" %>
+                            <% end %>
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="previewimage">
+                        <%= f.file_field :image, id: "post_image_field", class: 'form-control image-uploader' %>
+                    </div>
+                </div>
+        
+            <%= f.label :title_field, "Your post title." %>
+            <%= f.text_field :title, required: true, id: "post_title_field", class: 'form-control' %>
+            <%= f.label :text_field, "Post description." %> 
+            <%= f.text_field :body, id: "post_body_field", class: 'form-control' %> 
+            <br>
+            <div class="form-group text-center">
+            <%= f.submit "Create Post", class: "btn btn-success btn-lg" %>
+            <% end %>
+            </div>
+        </div>
+    </div>
+</div>

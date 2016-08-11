@@ -32,6 +32,8 @@ gem "mini_magick"
 gem "bcrypt"
 gem "pundit"
 gem "figaro"
+gem "responders"
+gem 'remotipart', github: 'sr3d/remotipart'
 
 
 group :production do

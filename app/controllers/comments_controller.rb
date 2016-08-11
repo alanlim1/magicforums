@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
-    before_action :authenticate!, only: [:create, :edit, :update, :new, :destroy]
+    respond_to :js
+    # before_action :authenticate!, only: [:create, :edit, :update, :new, :destroy]
+    before_action :authenticate!, except: [:index]
 
 
     def index
@@ -8,22 +10,16 @@ class CommentsController < ApplicationController
         @comment = Comment.new
     end
 
-    def new
-        @post = Post.find_by(id: params[:id])
-        @comment = Comment.new
-    end
 
     def create
-        @post = Post.find_by(id: params[:post_id])
-        # @comment = Comment.new(comment_params.merge(post_id: params[:post_id]))
         @comment = current_user.comments.build(comment_params.merge(post_id: params[:post_id]))
+        @new_comment = Comment.new
+        @post = Post.find_by(id: params[:post_id])
 
         if @comment.save
-            flash[:success] = "You've created a new comment."
-            redirect_to post_comments_path(@post)
+            flash.now[:success] = "You've created a new comment."
         else
-            flash[:danger] = @comment.errors.full_messages
-            redirect_to new_post_comment_path(@post)
+            flash.now[:danger] = @comment.errors.full_messages
         end
     end
 

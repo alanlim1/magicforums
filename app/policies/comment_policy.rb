@@ -14,11 +14,11 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def update?
-	edit?
+    edit?
   end
 
   def destroy?
-	edit?
+    edit?
   end
 
   private

@@ -6,12 +6,12 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
 
     resources :topics, except: [:show] do
-    	resources :posts, except: [:show]
+    	resources :posts, except: [:show,]
     end
     # /topics/:topic_id/posts/:id
 
-    resources :posts, except: [:show] do
-    	resources :comments
+    resources :posts, except: [:show, :new, :create, :update, :index, :edit, :destroy] do
+    	resources :comments, except: [:show, :new]
     end
     # /posts/:post_id/comments/:id
 

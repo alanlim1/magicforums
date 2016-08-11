@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+    respond_to :js
     before_action :authenticate!, only: [:create, :edit, :update, :new, :destroy]
 
 
@@ -17,12 +18,12 @@ class PostsController < ApplicationController
         @topic = Topic.find_by(id: params[:topic_id])
         # @post = Post.new(post_params.merge(topic_id: params[:topic_id]))
         @post = current_user.posts.build(post_params.merge(topic_id: params[:topic_id]))
+        @new_post = Post.new
+        
         if @post.save
-            flash[:success] = "You've created a new post."
-            redirect_to topic_posts_path(@topic)
+            flash.now[:success] = "You've created a new post."
         else
-            flash[:danger] = @post.errors.full_messages
-            redirect_to new_topic_post_path(@topic)
+            flash.now[:danger] = @post.errors.full_messages
         end
     end
 

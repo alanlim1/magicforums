@@ -1,0 +1,19 @@
+<div class="featurestopics text-center img-settings">
+	<% @comments.each do |comment| %>
+	    <div class="featuretopics">
+	    <br>
+	    	<%= link_to edit_post_comment_path(@post, comment) do %>	
+	  		<button type="button">Edit Comment</button>
+	  		<% end %>
+	  		<br>
+	  		<br>
+	  		<%= image_tag comment.image %>
+	  	    <h2><%= link_to comment.body, post_comments_path(@post) %></h2> 
+    		<h4><% comment.body %></h4>
+    		<%= link_to "Delete", post_comment_path(@post, comment), method: :delete, data: { confirm: "Are you sure?" } %>
+	    <br>
+	    <br>
+	    <br>
+	  </div>
+	<% end %>
+</div>	
