@@ -1,7 +1,7 @@
-<div class="featurestopics text-center">
+<div class="comments index featurestopics text-center">
     <div class="featuretopics">
     	<div class="form-group edit">
-    		<%= form_for(comment, url: post_comments_path(post), method: :post, authenticity_token: true, remote: true, html: { id: "comment-create-form" }) do |f| %>
+    		<%= form_for(comment, url: post_comments_path(post), method: :post, authenticity_token: true, remote: true, html: { id: "comment-create-form", multipart: true }) do |f| %>
 		        <div class="form-group">
 		            <h4 class="text-center"> 
 		            	Post Image 

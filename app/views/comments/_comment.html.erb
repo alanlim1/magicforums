@@ -1,19 +1,29 @@
-<div class="featurestopics text-center img-settings">
-	<div class="comment featuretopics">
-	    	<%= link_to edit_post_comment_path(@post, comment) do %>	
-	  		<button type="button">
-	  			Edit Comment
-	  		</button>
-	  		<% end %>
-		  		<br>
-		  		<br>
-	  			<%= image_tag comment.image %>
-	  	    	<h2>
-	  	    		<%= link_to comment.body, post_comments_path(@post, comment) %>
-	  	    	</h2> 
-				<h4>
-					<% comment.body %>	
-				</h4>
-					<%= link_to "Delete", post_comment_path(@post, comment), method: :delete, data: { confirm: "Are you sure?" } %>
+<div class="comments index">
+	<div class="featurestopics text-center img-settings">
+		<div class="comment featuretopics" data-id="<%= comment.id %>">
+			  		<br>
+			  		<br>
+			    <div class="imagebox vertical-center">
+			      <% image = comment.image.url || "" %>
+			      <%= image_tag image, class: 'img-responsive' %>
+			    </div>
+		  	    	<div class="textbox vertical-center">
+		    	<div>
+			        <h4> <%= comment.body %> </h4>
+			        <div class="control-panel">
+			          	<% if comment.user == current_user %>
+			            	<%= link_to "Edit Comment", edit_post_comment_path(@post, comment), remote: true, class: 'btn btn-primary' %>
+			          	<% end %>
+
+			          	<% if comment.user == current_user || current_user&.admin? || current_user&.moderator? %>
+			            	<%= link_to "Delete Comment", post_comment_path(post, comment), remote: true, method: :delete, data: { confirm: "Delete comment?" }, class: 'btn btn-danger' %>
+			          	<% end %>
+			        </div>
+			        <p class="date"> Posted: <%= comment.created_at %> </p>
+		    	</div>
+		</div>
 	</div>
 </div>
+
+
+    

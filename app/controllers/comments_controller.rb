@@ -15,6 +15,7 @@ class CommentsController < ApplicationController
         @new_comment = Comment.new
 
         if @comment.save
+            CommentBroadcastJob.set(wait: 0.1.seconds).perform_later("create", @comment)
             flash.now[:success] = "You've created a new comment."
         else
             flash.now[:danger] = @comment.errors.full_messages
@@ -30,13 +31,12 @@ class CommentsController < ApplicationController
     def update
         @post = Post.find_by(id: params[:post_id])
         @comment = Comment.find_by(id: params[:id])
+        authorize @comment
 
         if @comment.update(comment_params)    
-            flash[:success] = "Comment updated!"  
-            redirect_to post_comments_path(@post)
+            flash.now[:success] = "Comment updated!"  
         else
-            flash[:danger] = @comment.errors.full_messages
-            redirect_to edit_post_comment_path(@post)
+            flash.now[:danger] = @comment.errors.full_messages
         end
     end
 
@@ -46,8 +46,7 @@ class CommentsController < ApplicationController
         authorize @comment
 
         if @comment.destroy
-            flash[:danger] = "Comment deleted!"
-            redirect_to post_comments_path(@post)
+            flash.now[:danger] = "Comment deleted!"
         end
     end
 
