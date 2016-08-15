@@ -9,7 +9,7 @@
 		  		<br>
 	  			<%= image_tag comment.image %>
 	  	    	<h2>
-	  	    		<%= link_to comment.body, post_comments_path(@post) %>
+	  	    		<%= link_to comment.body, post_comments_path(@post, comment) %>
 	  	    	</h2> 
 				<h4>
 					<% comment.body %>	

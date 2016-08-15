@@ -6,16 +6,17 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
 
     resources :topics, except: [:show] do
-    	resources :posts, except: [:show,]
+    	resources :posts, except: [:show]
     end
     # /topics/:topic_id/posts/:id
 
-    resources :posts, except: [:show, :new, :create, :update, :index, :edit, :destroy] do
-    	resources :comments, except: [:show, :new]
+    resources :posts do
+    	resources :comments
     end
     # /posts/:post_id/comments/:id
 
     resources :password_resets
+    mount ActionCable.server => '/cable'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 end

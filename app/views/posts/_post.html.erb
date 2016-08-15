@@ -1,20 +1,21 @@
 <div class="featurestopics text-center img-settings">
     <div class="comment featuretopics">
-            <%= link_to edit_topic_post_path(@topic, post) do %>    
-            <button type="button">
-                Edit Post
-            </button>
-            <% end %>
+            <%= link_to edit_topic_post_path(@topic, post), remote: true %> 
+            <% render partial: "edit_post", locals: { post: post, topic: @topic } %>
+            <br>   
+                <button>Edit Post</button>
                 <br>
                 <br>
                 <%= image_tag post.image %>
                 <h2>
-                    <%= link_to post.title, topic_posts_path(@topic) %>
+                    <%= link_to post.title, post_comments_path(post) %>
                 </h2> 
                 <h4>
                     <% post.title %>
                     <%= post.body %>  
                 </h4>
                     <%= link_to "Delete", topic_post_path(@topic, post), method: :delete, data: { confirm: "Are you sure?" } %>
+                <br>
+                <br>
     </div>
 </div>

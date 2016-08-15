@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
     def index
         @topic = Topic.includes(:posts).find_by(id: params[:topic_id])
-        @posts = @topic.posts.order("created_at DESC")
+        @posts = @topic.posts.order("created_at DESC").page params[:page]
         @post = Post.new
     end
 
@@ -16,7 +16,6 @@ class PostsController < ApplicationController
 
     def create
         @topic = Topic.find_by(id: params[:topic_id])
-        # @post = Post.new(post_params.merge(topic_id: params[:topic_id]))
         @post = current_user.posts.build(post_params.merge(topic_id: params[:topic_id]))
         @new_post = Post.new
         
@@ -35,14 +34,12 @@ class PostsController < ApplicationController
 
     def update
         @topic = Topic.find_by(id: params[:topic_id])
-        @post = Post.find_by(id: params[:id])
+        @post = current_user.posts.build(post_params.merge(topic_id: params[:topic_id]))
 
         if @post.update(post_params)  
-            flash[:success] = "You've updated your post."    
-            redirect_to topic_posts_path(@topic)
+            flash.now[:success] = "You've updated your post."    
         else
-        	flash[:danger] = @post.errors.full_messages
-            redirect_to edit_topic_post_path(@topic)
+        	flash.now[:danger] = @post.errors.full_messages
         end
     end
 
@@ -52,8 +49,7 @@ class PostsController < ApplicationController
         authorize @post
 
         if @post.destroy
-        	flash[:danger] = "Post deleted!"
-            redirect_to topic_posts_path(@topic)
+        	flash.now[:danger] = "Post deleted!"
         end
     end
 

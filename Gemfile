@@ -34,6 +34,8 @@ gem "pundit"
 gem "figaro"
 gem "responders"
 gem 'remotipart', github: 'sr3d/remotipart'
+gem 'redis', '~>3.2'
+gem 'kaminari'
 
 
 group :production do
