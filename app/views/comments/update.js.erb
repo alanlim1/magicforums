@@ -1,3 +1,2 @@
 $('#flash-messages-container').html("<%=j render partial: 'partials/flash_messages' %>")
-
-$('#comments').html("<%=j render partial: 'comments/comment', locals: { comment: @comment, post: @comment.post } %>")
+$('#comment').html("<%=j render partial: 'comments/comment', locals: { comment: @comment, post: @comment.post } %>")

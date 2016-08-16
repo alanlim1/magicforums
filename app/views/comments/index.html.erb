@@ -1,24 +1,23 @@
-<div class="comments index">
-	<div class="bg2 text-center">
-		<div class="content">
-			<h1>Comments.</h1>
-		</div>
-	</div>
-
-	<div class="featuretopic">
-		<div id="comments-form-container">
-			<%= render partial: "create_comment_form", locals: { comment: @comment, post: @post } %>
-		</div>
-
-		<div id="comments">
-			<% @comments.each do |comment| %>
-			  <%= render partial: "comment", locals: { comment: comment, post: @post } %>
-			<% end %>
-		</div>
-	</div>
-
-	<div class="text-center">
-		<%= paginate @comments %>
+<div class="bg2 text-center">
+	<div class="content">
+		<h1>Comments.</h1>
 	</div>
 </div>
+
+<div class="comments featuretopic" data-id="<%=@post.id%>">
+	<div id="comments-form-container">
+		<%= render partial: "create_comment_form", locals: { comment: @comment, post: @post } %>
+	</div>
+
+	<div id="comments">
+		<% @comments.each do |comment| %>
+		  <%= render partial: "comment", locals: { comment: comment, post: @post, extra_class: "" } %>
+		<% end %>
+	</div>
+</div>
+
+<div class="text-center">
+	<%= paginate @comments %>
+</div>
+
 
