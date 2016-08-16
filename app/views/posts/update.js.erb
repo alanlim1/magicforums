@@ -1,2 +1,2 @@
 $('#flash-messages-container').html("<%=j render partial: 'partials/flash_messages' %>")
-$('.post[data-id=<%=@post.id%>]').replaceWith("<%=j render partial: 'posts/post', locals: { topic: @topic, post: @post.topic } %>")
+$('.post[data-id=<%=@post.id%>]').replaceWith("<%=j render partial: 'posts/post', locals: { post: @post, topic: @post.topic } %>")

@@ -34,7 +34,7 @@ class PostsController < ApplicationController
 
     def update
         @topic = Topic.find_by(id: params[:topic_id])
-        @post = current_user.posts.build(post_params.merge(topic_id: params[:topic_id]))
+        @post = Post.find_by(id: params[:id])
 
         if @post.update(post_params)  
             flash.now[:success] = "You've updated your post."    

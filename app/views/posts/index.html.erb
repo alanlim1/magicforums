@@ -1,23 +1,19 @@
-<div class="topics">
-
-	<div class="topics text-center">
-		<div class="content">
-			<h1> Posts.</h1>
-		</div>
+<div class="bg2 text-center">
+	<div class="content">
+		<h1> Posts.</h1>
 	</div>
-</div>	
-<br>
-<br>
-<br>
-
-<div id="posts-form-container">
-	<%= render partial: "create_post_form", locals: { post: @post, topic: @topic } %>
 </div>
 
-<div id="posts">
-	<% @posts.each do |post| %>
-	 	<%= render partial: "post", locals: { post: post, topic: @topic } %>
-	<% end %>
+<div class="posts-main featuretopic">
+	<div id="posts-form-container">
+		<%= render partial: "create_post_form", locals: { post: @post, topic: @topic } %>
+	</div>
+
+	<div id="posts">
+		<% @posts.each do |post| %>
+		 	<%= render partial: "post", locals: { post: post, topic: @topic } %>
+		<% end %>
+	</div>
 </div>
 	
 <div class="text-center">
