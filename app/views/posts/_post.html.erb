@@ -1,21 +1,21 @@
 <div class="featurestopics text-center img-settings">
-    <div class="comment featuretopics">
-            <%= link_to edit_topic_post_path(@topic, post), remote: true %> 
-            <% render partial: "edit_post", locals: { post: post, topic: @topic } %>
-            <br>   
-                <button>Edit Post</button>
-                <br>
-                <br>
-                <%= image_tag post.image %>
-                <h2>
-                    <%= link_to post.title, post_comments_path(post) %>
-                </h2> 
-                <h4>
-                    <% post.title %>
-                    <%= post.body %>  
-                </h4>
-                    <%= link_to "Delete", topic_post_path(@topic, post), method: :delete, data: { confirm: "Are you sure?" } %>
-                <br>
-                <br>
+    <div class="post featuretopics" data-id="<%=post.id%>">
+        <div class="imagebox vertical-center">
+            <%= image_tag @post.image, class: 'img-responsive' %>
+        </div>
+        <div class="textbox vertical-center">
+            <h2><%= link_to post.title, post_comments_path(post) %> </h2>
+            <h4><%= post.body %> </h4>
+            <div class="control-panel <%=post.id%>">
+                <% if post.user == current_user %>
+                    <%= link_to "Edit Post", edit_topic_post_path(@topic, post), remote: true, class: 'btn btn-primary' %>
+                <% end %>
+
+                <% if post.user == current_user || current_user&.admin? || current_user&.moderator? %>
+                    <%= link_to "Delete Post", topic_post_path(@topic, post), remote: true, method: :delete, data: { confirm: "Delete post?" }, class: 'btn btn-danger' %>
+                <% end %>
+            </div>
+            <p class="date"> Posted: <%= post.created_at %> </p>
+        </div>
     </div>
-</div>
+</div>    
