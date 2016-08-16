@@ -1,11 +1,11 @@
 postsChannelFunctions = () ->
 
-  checkMe = (comment_id, username) ->
-    unless $('meta[name=admin]').length > 0 || $("meta[user=#{username}]").length > 0
-      $("<your-comment-element-name>[data-id=#{comment_id}] .<your-buttons-container-element>").remove()
-    $("<your-comment-element-name>[data-id=#{comment_id}]").removeClass("hidden")
+  checkMe = (comment_id, user_email) ->
+    unless $('meta[name=admin]').length > 0 || $("meta[user=#{user_email}]").length > 0
+      $(".comment[data-id=#{comment_id}] .control-panel").remove()
+    $(".comment[data-id=#{comment_id}]").removeClass("")
 
-  if $('<your-comments-index-element>').length > 0
+  if $('.comments-main').length > 0
     App.posts_channel = App.cable.subscriptions.create {
       channel: "PostsChannel"
     },
@@ -14,8 +14,8 @@ postsChannelFunctions = () ->
     disconnected: () ->
 
     received: (data) ->
-      if $('<your-comments-index-element>').data().id == data.post.id
-        $('<your-comments-container>').append(data.partial)
+      if $('.comments-main').data().id == data.post.id
+        $('#comments-form-container').append(data.partial)
         checkMe(data.comment.id)
 
 $(document).on 'turbolinks:load', postsChannelFunctions
