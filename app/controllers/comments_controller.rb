@@ -33,7 +33,8 @@ class CommentsController < ApplicationController
         @comment = Comment.find_by(id: params[:id])
         authorize @comment
 
-        if @comment.update(comment_params)    
+        if @comment.update(comment_params)
+            CommentBroadcastJob.perform_later("update", @comment)    
             flash.now[:success] = "Comment updated!"  
         else
             flash.now[:danger] = @comment.errors.full_messages
@@ -46,6 +47,7 @@ class CommentsController < ApplicationController
         authorize @comment
 
         if @comment.destroy
+            CommentBroadcastJob.perform_now("destroy", @comment)
             flash.now[:danger] = "Comment deleted!"
         end
     end
