@@ -5,4 +5,9 @@ class Comment < ApplicationRecord
 	belongs_to :user
     max_paginates_per 5
     paginates_per 5
+    has_many :votes
+
+    def total_votes
+        votes.pluck(:value).sum
+    end
 end
