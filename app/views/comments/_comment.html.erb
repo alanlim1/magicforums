@@ -4,9 +4,9 @@
 	      	<% image = comment.image.url || "" %>
 	      	<%= image_tag image, class: 'img-responsive' %>
 	    </div>
+
   	    <div class="textbox vertical-center">
 	        <h4> <%= comment.body %> </h4>
-
 	        <div class="control-panel <%=comment.id%>">
 	          	<% if comment.user == current_user %>
 	            	<%= link_to "Edit Comment", edit_post_comment_path(post, comment), remote: true, class: 'btn btn-primary' %>
@@ -18,6 +18,16 @@
 	        </div>
 	        
 	        <p class="date"> Posted: <%= comment.created_at %> </p>
+	        <div class="votes-score">
+	        	<%= comment.total_votes %>
+	        </div>
+	        <br>
+	        <% if current_user %>
+		        <%=link_to fa_icon("thumbs-up 3x"), upvote_path(comment_id: comment.id), method: :post, remote: true %>
+				<%=link_to fa_icon("thumbs-down 3x"),downvote_path(comment_id: comment.id), method: :post, remote: true %>
+		    <% end %>
+	        <br>
+	        <br>
     	</div>
 	</div>
 </div>
