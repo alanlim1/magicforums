@@ -7,4 +7,8 @@ class Post < ApplicationRecord
 	belongs_to :user
     max_paginates_per 5
     paginates_per 5
+    include FriendlyId
+    friendly_id :title, :use => :slugged
+    validates_presence_of :title, :slug, :body
+
 end

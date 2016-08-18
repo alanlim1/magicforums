@@ -4,13 +4,13 @@ class CommentsController < ApplicationController
     # before_action :authenticate!, except: [:index]
 
     def index
-        @post = Post.includes(:comments).find_by(id: params[:post_id])
+        @post = Post.includes(:comments).friendly.find(params[:id])
         @comments = @post.comments.order("created_at DESC").page params[:page]
         @comment = Comment.new
     end
 
     def create
-        @post = Post.find_by(id: params[:post_id])
+        @post = Post.friendly.find(params[:id])
         @comment = current_user.comments.build(comment_params.merge(post_id: params[:post_id]))
         @new_comment = Comment.new
 
@@ -23,13 +23,13 @@ class CommentsController < ApplicationController
     end
 
     def edit
-        @comment = Comment.find_by(id: params[:id])
+        @comment = Comment.friendly.find(params[:id])
         @post = @comment.post
         authorize @comment
     end
 
     def update
-        @post = Post.find_by(id: params[:post_id])
+        @post = Post.friendly.find(params[:id])
         @comment = Comment.find_by(id: params[:id])
         authorize @comment
 
@@ -42,7 +42,7 @@ class CommentsController < ApplicationController
     end
 
     def destroy
-        @comment = Comment.find_by(id: params[:id])
+        @comment = Comment.friendly.find(params[:id])
         @post = @comment.post
         authorize @comment
 

@@ -4,19 +4,19 @@ class PostsController < ApplicationController
 
 
     def index
-        @topic = Topic.includes(:posts).find_by(id: params[:topic_id])
+        @topic = Topic.includes(:posts).friendly.find(params[:id])
         @posts = @topic.posts.order("created_at DESC").page params[:page]
         @post = Post.new
     end
 
     def new
-        @topic = Topic.find_by(id: params[:id])
+        @topic = Topic.friendly.find(params[:id])
         @post = Post.new
     end
 
     def create
-        @topic = Topic.find_by(id: params[:topic_id])
-        @post = current_user.posts.build(post_params.merge(topic_id: params[:topic_id]))
+        @topic = Topic.friendly.find(params[:id])
+        @post = current_user.posts.build(post_params.merge(topic_id: params[:id]))
         @new_post = Post.new
         
         if @post.save

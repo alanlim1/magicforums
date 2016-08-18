@@ -36,6 +36,7 @@ gem "responders"
 gem 'remotipart', github: 'sr3d/remotipart'
 gem 'redis', '~>3.2'
 gem 'kaminari'
+gem 'friendly_id', github: 'norman/friendly_id'
 
 
 group :production do
