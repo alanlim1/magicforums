@@ -4,14 +4,14 @@ class CommentsController < ApplicationController
     # before_action :authenticate!, except: [:index]
 
     def index
-        @post = Post.includes(:comments).friendly.find(params[:id])
+        @post = Post.includes(:comments).friendly.find(params[:post_id])
         @comments = @post.comments.order("created_at DESC").page params[:page]
         @comment = Comment.new
     end
 
     def create
-        @post = Post.friendly.find(params[:id])
-        @comment = current_user.comments.build(comment_params.merge(post_id: params[:post_id]))
+        @post = Post.friendly.find(params[:post_id])
+        @comment = current_user.comments.build(comment_params.merge(post_id: @post.id))
         @new_comment = Comment.new
 
         if @comment.save
@@ -24,14 +24,13 @@ class CommentsController < ApplicationController
 
     def edit
         @comment = Comment.friendly.find(params[:id])
-        @post = @comment.post
+        @post = Post.friendly.find(params[:post_id])
         authorize @comment
     end
 
     def update
-        @post = Post.friendly.find(params[:id])
-        @comment = Comment.find_by(id: params[:id])
-        authorize @comment
+        @post = Post.friendly.find(params[:post_id])
+        @comment = Comment.friendly.find(params[:id])
 
         if @comment.update(comment_params)
             CommentBroadcastJob.perform_later("update", @comment)    
@@ -43,7 +42,6 @@ class CommentsController < ApplicationController
 
     def destroy
         @comment = Comment.friendly.find(params[:id])
-        @post = @comment.post
         authorize @comment
 
         if @comment.destroy

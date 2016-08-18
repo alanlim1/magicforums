@@ -32,7 +32,7 @@ class TopicsController < ApplicationController
 	end
 
 	def update
-		@topic = Topic.friendly.find(params[:id])
+		@topic = Topic.friendly.find(params[:id]) 
 
 	    if @topic.update(topic_params)
 	    	flash[:success] = "You've updated your topic."
@@ -44,7 +44,7 @@ class TopicsController < ApplicationController
 	end
 
 	def destroy
-		@topic = Topic.find(params[:id])
+		@topic = Topic.friendly.find(params[:id])
 		authorize @topic
     	
     	if @topic.destroy
