@@ -1,4 +1,4 @@
-$('.post[data-id=<%=@post.id%>]').replaceWith("<%=j render partial: 'posts/edit_post', locals: { post: @post, topic: @post.topic } %>")
+$('.post[data-id=<%=@post.id%>]').html("<%=j render partial: 'posts/edit_post', locals: { post: @post, topic: @post.topic } %>")
 
 $('.cancel-button').on('click', function() {
   $('.post[data-id=<%=@post.id%>]').replaceWith("<%=j render partial: 'posts/post', locals: { post: @post, topic: @post.topic } %>")

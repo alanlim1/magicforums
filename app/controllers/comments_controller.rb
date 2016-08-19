@@ -23,14 +23,14 @@ class CommentsController < ApplicationController
     end
 
     def edit
-        @comment = Comment.friendly.find(params[:id])
+        @comment = Comment.find(params[:id])
         @post = Post.friendly.find(params[:post_id])
         authorize @comment
     end
 
     def update
         @post = Post.friendly.find(params[:post_id])
-        @comment = Comment.friendly.find(params[:id])
+        @comment = Comment.find(params[:id])
 
         if @comment.update(comment_params)
             CommentBroadcastJob.perform_later("update", @comment)    
@@ -41,7 +41,7 @@ class CommentsController < ApplicationController
     end
 
     def destroy
-        @comment = Comment.friendly.find(params[:id])
+        @comment = Comment.find(params[:id])
         authorize @comment
 
         if @comment.destroy

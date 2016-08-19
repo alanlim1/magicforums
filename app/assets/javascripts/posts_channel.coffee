@@ -1,24 +1,24 @@
 postsChannelFunctions = () ->
 
-  checkMe = (comment_id, user_email) ->
+  checkMe = (post_id, user_email) ->
     unless $('meta[name=admin]').length > 0 || $("meta[user=#{user_email}]").length > 0
-      $(".comment[data-id=#{comment_id}] .control-panel").remove()
+      $(".post[data-id=#{post_id}] .control-panel").remove()
 
-  createComment = (data) ->
-    if $('.comments-main').data().id == data.post.id
-      $('#comments-form-container').append(data.partial)
-      checkMe(data.comment.id)
+  createPost = (data) ->
+    if $('.posts-main').data().id == data.topic.id
+      $('#posts-form-container').append(data.partial)
+      checkMe(data.post.id)
 
-  updateComment = (data) ->
-    if $('.comments-main').data().id == data.post.id
-      $(".comment[data-id=#{data.comment.id}]").replaceWith(data.partial)
-      checkMe(data.comment.id, data.user_email)
+  updatePost = (data) ->
+    if $('.posts-main').data().id == data.topic.id
+      $(".post[data-id=#{data.post.id}]").replaceWith(data.partial)
+      checkMe(data.post.id, data.user_email)
 
-  destroyComment = (data) ->
-    if $('.comments-main').data().id == data.post.id
-      $(".comment[data-id=#{data.comment.id}]").remove();
+  destroyPost = (data) ->
+    if $('.posts-main').data().id == data.topic.id
+      $(".post[data-id=#{data.post.id}]").remove();
 
-  if $('.comments-main').length > 0
+  if $('.posts-main').length > 0
     App.posts_channel = App.cable.subscriptions.create {
       channel: "PostsChannel"
     },
@@ -28,8 +28,8 @@ postsChannelFunctions = () ->
 
     received: (data) ->
       switch data.type
-        when "create" then createComment(data)
-        when "update" then updateComment(data)
-        when "destroy" then destroyComment(data)
+        when "create" then createPost(data)
+        when "update" then updatePost(data)
+        when "destroy" then destroyPost(data)
 
 $(document).on 'turbolinks:load', postsChannelFunctions

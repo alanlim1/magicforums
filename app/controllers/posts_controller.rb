@@ -37,7 +37,8 @@ class PostsController < ApplicationController
         @topic = Topic.friendly.find(params[:topic_id])
         @post = Post.friendly.find(params[:id])
 
-        if @post.update(post_params)  
+        if @post.update(post_params)
+            PostBroadcastJob.perform_later("update", @post)    
             flash.now[:success] = "You've updated your post." 
         else
         	flash.now[:danger] = @post.errors.full_messages
@@ -49,6 +50,7 @@ class PostsController < ApplicationController
         authorize @post
 
         if @post.destroy
+            PostBroadcastJob.perform_now("destroy", @post)
         	flash.now[:danger] = "Post deleted!"
         end
     end

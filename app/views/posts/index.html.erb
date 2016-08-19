@@ -4,7 +4,7 @@
 	</div>
 </div>
 
-<div class="posts-main featuretopic">
+<div class="posts-main featuretopic" data-id="<%=@topic.id%>">
 	<div id="posts-form-container">
 		<%= render partial: "create_post_form", locals: { post: @post, topic: @topic } %>
 	</div>
