@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
 
     before(:all) do
-    @user = User.create(email:"test@test", password:"test")
-    @unauthorized_user = User.create(email:"hax@hax", password:"hax")
+        @user = User.create(email:"test@test", password:"test")
+        @unauthorized_user = User.create(email:"hax@hax", password:"hax")
     end
 
     describe "render new" do
