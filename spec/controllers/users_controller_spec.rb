@@ -73,7 +73,7 @@ RSpec.describe UsersController, type: :controller do
             params = { id: @user.id, user: { email: "new@email.com", username: "newusername" } }
             patch :update, params: params, session: { id: @unauthorized_user.id }
 
-            expect(subject).to redirect_to(topics_path)
+            expect(subject).to redirect_to(root_path)
             expect(flash[:danger]).to eql("You're not authorized")
         end
 

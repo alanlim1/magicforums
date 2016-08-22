@@ -23,16 +23,15 @@ class UsersController < ApplicationController
     def edit
         @user = User.find_by(id: params[:id])
         authorize @user
-
     end
 
     def update
-        # @user = User.find_by(id: params[:id])
-        @user = current_user
+        @user = User.find_by(id: params[:id])
+        authorize @user
 
         if @user.update(user_params)
             flash[:success] = "You've updated your account."      
-            redirect_to topics_path(@user)
+            redirect_to topics_path
         else
             flash[:danger] = @user.errors.full_messages
             redirect_to edit_user_path(@user)

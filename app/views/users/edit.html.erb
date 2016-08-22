@@ -1,6 +1,6 @@
 <div class="topics">
   <div class="bg2">
-  <%= form_for(@user, url: user_path(@user), html: { id: "user-update-form" }) do |f| %>
+  <%= form_for(current_user, url: user_path(current_user), html: { id: "user-update-form" }) do |f| %>
     <h1 class="edit text-center">
       Update your information.
     </h1>
