@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    before_action :authenticate!, only: [:edit, :update, :destroy]
 
     def new
         # @user = User.find_by(id: params[:id])
@@ -12,21 +13,22 @@ class UsersController < ApplicationController
 
         if @user.save
             flash[:success] = "You've created a new account."
-            redirect_to topics_path
         else
             flash[:danger] = @user.errors.full_messages
-            render :new
         end
+
+        redirect_to topics_path
     end
 
     def edit
         @user = User.find_by(id: params[:id])
-        # @post = @comment.post
+        authorize @user
+
     end
 
     def update
-        @user = User.find_by(id: params[:user_id])
-        @user = User.find_by(id: params[:id])
+        # @user = User.find_by(id: params[:id])
+        @user = current_user
 
         if @user.update(user_params)
             flash[:success] = "You've updated your account."      
