@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe TopicsController, type: :controller do
     before(:all) do
-        @admin = User.create(email:"hax@hax", password:"hax", role: 2)
-        @user = User.create(email:"test@test", password:"test")
-        @topic = Topic.create(title:"This is title", description:"This is description")
+        @admin = create(:user, :admin)
+        @user = create(:user)
+        @topic = create(:topic)
     end
 
     describe "index topics" do
