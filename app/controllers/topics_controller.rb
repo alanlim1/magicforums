@@ -33,10 +33,11 @@ class TopicsController < ApplicationController
 
 	def update
 		@topic = Topic.friendly.find(params[:id]) 
+        authorize @topic
 
 	    if @topic.update(topic_params)
 	    	flash[:success] = "You've updated your topic."
-	    	redirect_to topics_path(@topic)
+	    	redirect_to topics_path
     	else
     		flash[:danger] = @topic.errors.full_messages
       		redirect_to edit_topic_path(@topic)

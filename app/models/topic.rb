@@ -5,4 +5,11 @@ class Topic < ApplicationRecord
     include FriendlyId
     friendly_id :title, :use => :slugged
 
+    before_save :update_slug
+
+    private
+
+    def update_slug
+        self.slug = title.gsub(" ", "-") if self.slug != title.gsub(" ", "-")
+    end
 end

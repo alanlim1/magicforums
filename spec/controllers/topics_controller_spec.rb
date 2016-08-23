@@ -4,7 +4,7 @@ RSpec.describe TopicsController, type: :controller do
     before(:all) do
         @admin = User.create(email:"hax@hax", password:"hax", role: 2)
         @user = User.create(email:"test@test", password:"test")
-        Topic.create(title:"This is title", description:"This is description")
+        @topic = Topic.create(title:"This is title", description:"This is description")
     end
 
     describe "index topics" do
@@ -53,17 +53,18 @@ RSpec.describe TopicsController, type: :controller do
             expect(subject).to redirect_to(topics_path)
         end
 
-        # it "should deny if user not admin" do
-        #     params = { topic: { title: "New Title", description: "New Description" } }
-        #     post :create, params: params, session: { id: @user.id }
+        it "should deny if user not admin" do
+            params = { topic: { title: "New Title", description: "New Description" } }
+            post :create, params: params, session: { id: @user.id }
 
-        #     expect(flash[:danger]).to eql("You are not authorized")
-        # end
+            expect(subject).to redirect_to(topics_path)
+
+        end
     end
 
     describe "edit topic" do
         it "should redirect if not logged in" do
-            params = { id: @user.id }
+            params = { id: @topic.slug }
             get :edit, params: params
 
             expect(subject).to redirect_to(root_path)
@@ -71,7 +72,7 @@ RSpec.describe TopicsController, type: :controller do
         end
 
         it "should redirect if user unauthorized" do
-            params = { id: @admin.id }
+            params = { id: @topic.slug }
             get :edit, params: params, session: { id: @user.id }
 
             expect(subject).to redirect_to(root_path)
@@ -79,35 +80,67 @@ RSpec.describe TopicsController, type: :controller do
         end
 
         it "should render edit" do
-            params = { id: @admin.id }
+            params = { id: @topic.slug }
             get :edit, params: params, session: { id: @admin.id }
 
             current_user = subject.send(:current_user)
-            expect(subject).to render_template(:edit)
             expect(current_user).to be_present
+            expect(subject).to render_template(:edit)
         end
     end
 
-    describe "destroy topic" do
+    describe "update topic" do
         it "should redirect if not logged in" do
-            params = { id: @user.id }
-            get :destroy, params: params
+            params = { id: @topic.slug } 
+            patch :update, params: params
 
             expect(subject).to redirect_to(root_path)
             expect(flash[:danger]).to eql("You need to login first")
         end
 
         it "should redirect if user unauthorized" do
-            params = { id: @admin.id }
-            get :destroy, params: params, session: { id: @user.id }
+            params = { id: @topic.slug }
+            patch :update, params: params, session: { id: @user.id}
+
+            expect(subject).to redirect_to(root_path)
+            expect(flash[:danger]).to eql("You're not authorized")
+            expect(subject).to redirect_to(root_path)
+        end
+
+        it "should update topic for admin" do
+            params = { id: @topic.id, topic: { title: "NEW TITLE YO", description: "NEW DESC YO" } }
+            patch :update, params: params, session: { id: @admin.id }
+
+            @topic.reload
+            current_user = subject.send(:current_user).reload
+            current_user = subject.send(:current_user)
+            expect(current_user).to be_present
+            expect(current_user).to eql(@admin)
+            expect(flash[:success]).to eql("You've updated your topic.")
+            expect(subject).to redirect_to(topics_path)
+        end
+    end
+
+    describe "destroy topic" do
+        it "should redirect if not logged in" do
+            params = { id: @topic.id }
+            delete :destroy, params: params
+
+            expect(subject).to redirect_to(root_path)
+            expect(flash[:danger]).to eql("You need to login first")
+        end
+
+        it "should redirect if user unauthorized" do
+            params = { id: @topic.id }
+            delete :destroy, params: params, session: { id: @user.id }
 
             expect(subject).to redirect_to(root_path)
             expect(flash[:danger]).to eql("You're not authorized")
         end
 
         it "should render destroy" do
-            params = { id: @admin.id }
-            get :destroy, params: params, session: { id: @admin.id }
+            params = { id: @topic.id }
+            delete :destroy, params: params, session: { id: @admin.id }
 
             current_user = subject.send(:current_user)
             expect(subject).to redirect_to(topics_path)
