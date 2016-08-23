@@ -102,7 +102,6 @@ RSpec.describe TopicsController, type: :controller do
             params = { id: @topic.slug }
             patch :update, params: params, session: { id: @user.id}
 
-            expect(subject).to redirect_to(root_path)
             expect(flash[:danger]).to eql("You're not authorized")
             expect(subject).to redirect_to(root_path)
         end
