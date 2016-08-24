@@ -31,7 +31,7 @@ RSpec.describe VotesController, type: :controller do
             expect(assigns[:vote]).to_not be_nil
         end
 
-        it "should find vote if exists" do
+        it "should find vote if it exists" do
             @vote = @user.votes.create(comment_id: @comment.id)
             expect(Vote.all.count).to eql(1)
 
