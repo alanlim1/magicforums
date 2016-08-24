@@ -24,14 +24,14 @@ RSpec.describe SessionsController, type: :controller do
             user = User.find_by(email: "test@test")
 
             # expect(subject).to redirect_to(topics_path)
-            expect(user[:id]).to eql(@user.id)
+            expect(current_user[:id]).to eql(@user.id)
             expect(current_user).to be_present
             # expect(flash[:success]).to eql("Welcome back #{current_user.email}")
 
         end
 
         it "should redirect and render new if error logging in" do
-            params = { user: { email: "testos@testerone", password: "test icicles" } }
+            params = { user: { email: "testo@testo", password: "testo" } }
             post :create, params: params
 
             current_user = subject.send(:current_user)
