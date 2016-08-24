@@ -3,16 +3,16 @@
     <h1 class="edit text-center">
       Register a new account.
     </h1>
-
+    <br>
     <div class="form-group">
       <h4>
         <%= f.label :title_field, "Your email below." %> 
       </h4>
-        <%= f.email_field :email, required: true, id: "user_email_field", class: 'form-control' %>
+        <%= f.email_field :email, required: true, :placeholder => "Enter email address", id: "user_email_field", class: 'form-control' %>
       <h4>
         <%= f.label :password_field, "Your password." %> 
       </h4>      
-        <%= f.password_field :password, required: true, id: "user_password_field", class: 'form-control' %>
+        <%= f.password_field :password, required: true, :placeholder => "Enter password", id: "user_password_field", class: 'form-control' %>
       </div>  
 
       <div class="form-group text-center">
