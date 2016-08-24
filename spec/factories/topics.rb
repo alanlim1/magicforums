@@ -5,11 +5,11 @@ FactoryGirl.define do
         user_id { create(:user, :admin).id }
 
         trait :sequenced_title do
-            title
+            sequence(:title) { |n| "Topic#{n}" }
         end
 
         trait :sequenced_description do
-            description
+            sequence(:description) { |n| "Description#{n}" }
         end
     end
 end

@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
     before(:all) do
-        @user = User.create(email:"test@test", password:"test", role: 0)
-        @noob = User.create(email:"noob@noob", password:"noob", role: 0)
-        @topic = Topic.create(title:"This is title", description:"This is description")
-        @post = Post.create(title:"This is post", body:"This is a wonderland", topic_id: @topic.id, user_id: @user.id)
-        @post2 = Post.create(title:"This is post2", body:"This is a wonderland2", topic_id: @topic.id, user_id: @user.id)
+        @user = create(:user)
+        @noob = create(:user, email:"noob@noob", password:"noob")
+        @topic = create(:topic)
+        @post = create(:post, title:"This is post", body:"This is a wonderland", topic_id: @topic.id, user_id: @user.id)
+        @post2 = create(:post, title:"This is post2", body:"This is a wonderland2", topic_id: @topic.id, user_id: @user.id)
     
     end
 

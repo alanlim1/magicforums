@@ -1,6 +1,5 @@
 FactoryGirl.define do
-    factory :post do
-        title "This is post"
+    factory :comment do
         body "This is a wonderland"
         user_id { create(:user, :admin).id }
 
@@ -8,12 +7,8 @@ FactoryGirl.define do
             image { fixture_file_upload("#{::Rails.root}/spec/fixtures/cat.jpg") }
         end
 
-        trait :sequenced_title do
-            sequence(:title) { |n| "This is a pasta post#{n}" }
-        end
-
         trait :sequenced_body do
-            sequence(:body) { |n| "LE VANDALAND#{n}" }
+            sequence(:body) { |n| "LE COMMENTS BODDEH#{n}" }
         end
     end
 end
