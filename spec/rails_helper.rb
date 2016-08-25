@@ -6,6 +6,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'shoulda/matchers'
+require 'capybara/rspec'
 require 'capybara/rails'
 
 Dir["./spec/support/generators/*"].each {|file| require file }
@@ -80,4 +81,10 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with(:truncation)
     FileUtils.rm_rf("#{::Rails.root}/public/uploads/test")
   end
+
+  # Capybara.register_driver :selenium_chrome do |app|
+  #   Capybara::Selenium::Driver.new(app, :browser => :chrome)
+  # end
+
+  # Capybara.javascript_driver = :chrome
 end

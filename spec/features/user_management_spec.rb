@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "User Management", type: :feature do
+RSpec.feature "User Creation", type: :feature do
   before(:all) do
     @user = create(:user)
   end
