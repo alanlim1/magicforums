@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe VotesController, type: :controller do
     before(:all) do
-        @user = User.create(email:"test@test", password:"test", role: 0)
-        @noob = User.create(email:"noob@noob", password:"noob", role: 0)
-        @topic = Topic.create(title:"This is title", description:"This is description")
-        @post = Post.create(title:"This is post", body:"This is a wonderland", topic_id: @topic.id, user_id: @user.id)
-        @comment = Comment.create(body:"This is a comment wonderland", post_id: @post.id, user_id: @user.id)
-        @comment2 = Comment.create(body:"This is a comment land 2", post_id: @post.id, user_id: @user.id)
+        @user = create(:user)
+        @noob = create(:user, email:"noob@noob", password:"noob", role: 0)
+        @topic = create(:topic)
+        @post = create(:post, topic_id: @topic.id, user_id: @user.id)
+        @comment = create(:comment, post_id: @post.id, user_id: @user.id)
+        @comment2 = create(:comment, post_id: @post.id, user_id: @user.id)
 
 
     end

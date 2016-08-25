@@ -112,8 +112,7 @@ RSpec.describe TopicsController, type: :controller do
 
             @topic.reload
             current_user = subject.send(:current_user).reload
-            current_user = subject.send(:current_user)
-            expect(current_user).to be_present
+
             expect(current_user).to eql(@admin)
             expect(flash[:success]).to eql("You've updated your topic.")
             expect(subject).to redirect_to(topics_path)

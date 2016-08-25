@@ -3,11 +3,11 @@ require 'rails_helper'
 RSpec.describe CommentsController, type: :controller do
     before(:all) do
         @user = create(:user)
-        @noob = create(:user, email:"noob@noob", password:"noob", role: 0)
-        @topic = create(:topic, title:"This is title", description:"This is description")
-        @post = create(:post, title:"This is post", body:"This is a wonderland", topic_id: @topic.id, user_id: @user.id)
-        @comment = create(:comment, body:"This is a comment wonderland", post_id: @post.id, user_id: @user.id)
-        @comment2 = create(:comment, body:"This is a comment land 2", post_id: @post.id, user_id: @user.id)
+        @noob = create(:user, email:"noob@noob", password:"noob")
+        @topic = create(:topic)
+        @post = create(:post, topic_id: @topic.id, user_id: @user.id)
+        @comment = create(:comment, post_id: @post.id, user_id: @user.id)
+        @comment2 = create(:comment, post_id: @post.id, user_id: @user.id)
     
     end
 

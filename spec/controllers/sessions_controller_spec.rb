@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
     before(:all) do
-        @user = User.create(email:"test@test", password:"test", role: 0)
-        @noob = User.create(email:"noob@noob", password:"noob", role: 0)
+        @user = create(:user)
+        @noob = create(:user, email:"noob@noob", password:"noob", role: 0)
     end
 
     describe "new login" do
@@ -16,17 +16,17 @@ RSpec.describe SessionsController, type: :controller do
 
     describe "create session" do
         it "should redirect after logging in" do
-            params = { user: { email: "test@test", password: "test" } }
-            post :create, params: params, session: { id: @user.id }
+            params = { user: { email: "user@email.com", password: "password"} }
+            post :create, params: params
 
             current_user = subject.send(:current_user)
 
-            user = User.find_by(email: "test@test")
+            user = User.find_by(email: "user@email.com")
 
-            # expect(subject).to redirect_to(topics_path)
+            expect(subject).to redirect_to(topics_path)
             expect(current_user[:id]).to eql(@user.id)
             expect(current_user).to be_present
-            # expect(flash[:success]).to eql("Welcome back #{current_user.email}")
+            expect(flash[:success]).to eql("Welcome back #{current_user.email}")
 
         end
 
