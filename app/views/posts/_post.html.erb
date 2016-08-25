@@ -8,7 +8,7 @@
             <h2><%= link_to post.title, post_comments_path(post) %> </h2>
             <h4><%= post.body %> </h4>
             <div class="control-panel <%=post.id%>">
-                <% if post.user == current_user %>
+                <% if post.user == current_user || current_user&.admin? || current_user&.moderator? %>
                     <%= link_to "Edit Post", edit_topic_post_path(topic, post), remote: true, class: 'btn btn-primary' %>
                 <% end %>
 

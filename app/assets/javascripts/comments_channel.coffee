@@ -1,7 +1,7 @@
 commentsChannelFunctions = () ->
 
   checkMe = (comment_id, user_email) ->
-    unless $('meta[name=admin]').length > 0 || $("meta[user=#{user_email}]").length > 0
+    unless $('meta[name=admin]').length > 0 || $("meta[user=#{user.email}]").length > 0
       $(".comment[data-id=#{comment_id}] .control-panel").remove()
 
   createComment = (data) ->
