@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe CommentsController, type: :controller do
     before(:all) do
-        @user = create(:user)
+        @user = create(:user, :sequenced_email)
         @noob = create(:user, email:"noob@noob", password:"noob")
         @topic = create(:topic)
         @post = create(:post, topic_id: @topic.id, user_id: @user.id)
